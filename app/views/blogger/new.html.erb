@@ -1,0 +1,16 @@
+<form method="POST" action="/add">
+<%=token_tag%>
+ <div class="col-6"  >
+  <div class="mb-3" >
+    <label for="userid" class="form-label">User Name</label>
+    <input name="name" type="text" class="form-control" id="nameid"  aria-describedby="userHelp">
+   
+  </div>
+  <div class="mb-3">
+    <label for="blog" class="form-label">Write you Blog </label>
+    <input name="article" type="text"class="form-control" id="articleid">
+  </div>
+   
+  <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
