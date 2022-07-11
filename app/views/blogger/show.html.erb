@@ -1,4 +1,12 @@
 <h1><%= @blog.name %></h1>
 
-<p><%= @blog.article %></p>
-    
+<p><%= @blog.article %>
+
+<li>
+<%= link_to "Edit this blog",edit_blogger_url(@blog[:id])%>
+<br>
+<%=     link_to "delete this blog", "/blogger/#{@blog[:id]}" , data: {turbo_method: :delete}%>
+<br>
+<%=     link_to "all blogs",blogger_index_path%>
+</li>
+</p>

@@ -1,0 +1,24 @@
+
+<h1>Edit blog</h1>
+
+<%= form_with url: "/blogger/#{@blog[:id]}", method: :put do |form| %>
+ <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+    <% @blog.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :article %><br>
+    <%= form.text_area :article %><br>
+    <% @blog.errors.full_messages_for(:article).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
