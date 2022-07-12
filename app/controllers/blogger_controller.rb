@@ -14,7 +14,8 @@ class BloggerController<ApplicationController
     end
 
     def create
-     @blog = BlogDb.new({:name=>params[:name],:article=>params[:article]})
+     @blog = BlogDb.new(blog_params)
+   
      # @blog.name=params[:name]
      # @blog.article=params[:article]
           if @blog.save
@@ -30,8 +31,10 @@ class BloggerController<ApplicationController
 
      def update
           @blog = BlogDb.find(params[:id])
-      
-          if @blog.update({:name=>params[:name],:article=>params[:article]})
+         
+          puts params
+          puts"-------------------------------"
+          if @blog.update(blog_params)
             redirect_to blogger_url(@blog[:id])
           else
             render :edit, status: :unprocessable_entity
@@ -44,16 +47,16 @@ class BloggerController<ApplicationController
           redirect_to blogger_index_path, status: :see_other
      end
           
+     private
+     def blog_params
+          puts "====================================="
+          puts params
+          
+          
+          puts params.require(:blog_db).permit(:name,:article)
+          
+          params.require(:blog_db).permit(:name,:article)
+    end
 
 
-
-
-
-
-
-
-#      private
-#     def article_params
-#       params.require(:article).permit(:title, :body)
-#     end
 end

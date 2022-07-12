@@ -1,11 +1,11 @@
 
 <h1>Edit blog</h1>
 
-<%= form_with url: "/blogger/#{@blog[:id]}", method: :put do |form| %>
+<%= form_with url: "/blogger/#{@blog[:id]}", method: :put ,model: @blog do |form| %>
  <div>
     <%= form.label :name %><br>
     <%= form.text_field :name %>
-    <% @blog.errors.full_messages_for(:title).each do |message| %>
+    <% @blog.errors.full_messages_for(:name).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>

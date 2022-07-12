@@ -1,16 +1,17 @@
-<form method="POST" action="/blogger">
-<%=token_tag%>
- <div class="col-6"  >
-  <div class="mb-3" >
-    <label for="userid" class="form-label">User Name</label>
-    <input name="name" type="text" class="form-control" id="nameid"  aria-describedby="userHelp">
-   
+<h1>New Article</h1>
+
+<%= form_with url:"/blogger" ,method: :post ,model: @blog do |form| %>
+  <div>
+    <%= form.label :username %><br>
+    <%= form.text_field :name %>
   </div>
-  <div class="mb-3">
-    <label for="blog" class="form-label">Write you Blog </label>
-    <input name="article" type="text"class="form-control" id="articleid">
+
+  <div>
+    <%= form.label :article %><br>
+    <%= form.text_area :article %>
   </div>
-   
-  <button type="submit" class="btn btn-primary">Submit</button>
+
+  <div>
+    <%= form.submit %>
   </div>
-</form>
+<% end %>
