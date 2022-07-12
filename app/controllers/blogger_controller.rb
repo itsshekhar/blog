@@ -1,6 +1,8 @@
 class BloggerController<ApplicationController
 
-   
+
+     http_basic_authenticate_with name: "shekhar", password: "shekhar", except: [:index, :show]
+
     def index
          @blog = BlogDb.all
     end
@@ -31,7 +33,6 @@ class BloggerController<ApplicationController
 
      def update
           @blog = BlogDb.find(params[:id])
-         
           puts params
           puts"-------------------------------"
           if @blog.update(blog_params)
@@ -48,13 +49,7 @@ class BloggerController<ApplicationController
      end
           
      private
-     def blog_params
-          puts "====================================="
-          puts params
-          
-          
-          puts params.require(:blog_db).permit(:name,:article)
-          
+     def blog_params  
           params.require(:blog_db).permit(:name,:article)
     end
 

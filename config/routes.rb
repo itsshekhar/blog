@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :blogger
+  resources :blogger do 
+    resources :comments
+  end
   root "blogger#index"
   # post "/add", to:"blogger#add"
   # get "/show",to:"blogger#show"

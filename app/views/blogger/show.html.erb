@@ -5,8 +5,49 @@
 <li>
 <%= link_to "Edit this blog",edit_blogger_url(@blog[:id])%>
 <br>
-<%=     link_to "delete this blog", "/blogger/#{@blog[:id]}" , data: {turbo_method: :delete}%>
-<br>
+<li><%= link_to "Destroy", blogger_path(@blog), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure ?"
+                  } %></li>
+
 <%=     link_to "all blogs",blogger_index_path%>
 </li>
 </p>
+
+
+<h2>Comments</h2>
+<% @blog.comments.each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+  <p>
+  
+  <%= link_to "Destroy Comment","/blogger/#{comment[:blog_db_id]}/comments/#{comment[:id]}" , data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              } %>
+</p>
+<% end %>
+
+
+
+<h2>Add a comment:</h2>
+<%= form_with url:"/blogger/#{@blog[:id]}/comments"  , model: [ @blog, @blog.comments.build ] do |form| %>
+  <p>
+    <%= form.label :commenter %><br>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>  
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
